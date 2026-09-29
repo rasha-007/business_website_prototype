@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Business</title>
+
+    <style>
+
+        /* =========================
+           GENERAL PAGE STYLE
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #263B5E;
+
+            background: linear-gradient(
+                135deg,
+                #EAF4FF,
+                #EEF0FF,
+                #F7F9FF
+            );
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVIGATION BAR
+        ========================== */
+
+        nav {
+            position: sticky;
+            top: 0;
+
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+
+            padding: 18px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+
+            z-index: 1000;
+        }
+
+        nav h2 {
+            color: #4F7CAC;
+        }
+
+        nav ul {
+            list-style: none;
+
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4b4050;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #a56bb5;
+        }
+
+
+        /* =========================
+           HERO / HOME
+        ========================== */
+
+        .hero {
+            min-height: 90vh;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+
+            color: #263B5E;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 650px;
+
+            margin-bottom: 30px;
+
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 14px 30px;
+
+            background: linear-gradient(
+                135deg,
+                #4F7CAC,
+                #A8B8E8
+            );
+
+            color: white;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            border: none;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================== */
+
+        section {
+            padding: 80px 8%;
+        }
+
+        section h2 {
+            text-align: center;
+
+            font-size: 35px;
+
+            margin-bottom: 40px;
+
+            color: #684b76;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================== */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+            repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.7);
+
+            backdrop-filter: blur(10px);
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+            0 10px 30px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+
+            color: #4F7CAC;
+        }
+
+        .card p {
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about-box {
+            max-width: 800px;
+
+            margin: auto;
+
+            background: rgba(255,255,255,0.7);
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            line-height: 1.8;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 12px;
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           EDITOR
+        ========================== */
+
+        .editor {
+            max-width: 700px;
+
+            margin: auto;
+
+            background: rgba(255,255,255,0.8);
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            box-shadow:
+            0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .editor label {
+            display: block;
+
+            margin-top: 18px;
+
+            margin-bottom: 6px;
+
+            font-weight: bold;
+        }
+
+        .editor input,
+        .editor textarea {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #d8c9da;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+        }
+
+        .editor textarea {
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+        .editor button {
+            margin-top: 25px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            background: rgba(255,255,255,0.6);
+
+            margin-top: 30px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav>
+
+        <h2 id="navBusinessName">
+            My Business
+        </h2>
+
+        <ul>
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#guide">Guide</a>
+            </li>
+
+            <li>
+                <a href="#services">Services</a>
+            </li>
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+            <li>
+                <a href="#editor">Edit</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HOME
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <h1 id="businessName">
+            My Business
+        </h1>
+
+        <p id="businessTagline">
+            Helping you turn your ideas into something amazing.
+        </p>
+
+        <a href="#services" class="button">
+            Explore
+        </a>
+
+    </section>
+
+
+
+    <!-- =========================
+         GUIDE
+    ========================== -->
+
+    <section id="guide">
+
+        <h2>Business Guide</h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>01. Know Your Customer</h3>
+
+                <p>
+                    Understand who you are helping,
+                    what they need, and why they would
+                    choose your business.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>02. Create Your Offer</h3>
+
+                <p>
+                    Turn your skills into a clear
+                    product or service that solves
+                    a specific problem.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>03. Promote Your Business</h3>
+
+                <p>
+                    Use social media, content,
+                    referrals and other channels
+                    to reach potential customers.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>04. Improve</h3>
+
+                <p>
+                    Listen to customers, measure
+                    what works and continuously
+                    improve your offer.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SERVICES
+    ========================== -->
+
+    <section id="services">
+
+        <h2>Services</h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3 id="service1Title">
+                    Service One
+                </h3>
+
+                <p id="service1Description">
+                    Describe your first service here.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3 id="service2Title">
+                    Service Two
+                </h3>
+
+                <p id="service2Description">
+                    Describe your second service here.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3 id="service3Title">
+                    Service Three
+                </h3>
+
+                <p id="service3Description">
+                    Describe your third service here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         TIPS
+    ========================== -->
+
+    <section>
+
+        <h2>Quick Tips</h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Be Consistent</h3>
+
+                <p>
+                    Consistency helps people remember
+                    your business.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Show Your Work</h3>
+
+                <p>
+                    Let potential customers see what
+                    you can actually create.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Make It Simple</h3>
+
+                <p>
+                    Make it easy for customers to
+                    understand what you offer.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about">
+
+        <h2>About Us</h2>
+
+        <div class="about-box">
+
+            <p id="aboutText">
+
+                Welcome to our business!
+
+                We are passionate about helping
+                our customers and creating useful,
+                high-quality products and services.
+
+                Replace this text with your own
+                business story.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section id="contact" class="contact">
+
+        <h2>Contact</h2>
+
+        <p>
+            📧 <span id="email">
+                your@email.com
+            </span>
+        </p>
+
+        <p>
+            📱 <span id="phone">
+                +123456789
+            </span>
+        </p>
+
+        <p>
+            📍 <span id="location">
+                Your City
+            </span>
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         EDIT WEBSITE
+    ========================== -->
+
+    <section id="editor">
+
+        <h2>Edit Your Website</h2>
+
+        <div class="editor">
+
+            <label>
+                Business Name
+            </label>
+
+            <input
+                type="text"
+                id="inputBusinessName"
+                placeholder="Example: Sweet Crumbs"
+            >
+
+
+            <label>
+                Tagline
+            </label>
+
+            <input
+                type="text"
+                id="inputTagline"
+                placeholder="Example: Homemade happiness"
+            >
+
+
+            <label>
+                About Your Business
+            </label>
+
+            <textarea
+                id="inputAbout"
+                placeholder="Tell people about your business..."
+            ></textarea>
+
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="inputEmail"
+                placeholder="you@example.com"
+            >
+
+
+            <label>
+                Phone
+            </label>
+
+            <input
+                type="text"
+                id="inputPhone"
+                placeholder="+966..."
+            >
+
+
+            <label>
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="inputLocation"
+                placeholder="Dammam, Saudi Arabia"
+            >
+
+
+            <button
+                class="button"
+                onclick="updateWebsite()"
+            >
+                Update Website
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 <span id="footerName">
+                My Business
+            </span>
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+    function updateWebsite() {
+
+        let name = document.getElementById("inputBusinessName").value;
+        let tagline = document.getElementById("inputTagline").value;
+        let about = document.getElementById("inputAbout").value;
+        let email = document.getElementById("inputEmail").value;
+        let phone = document.getElementById("inputPhone").value;
+        let location = document.getElementById("inputLocation").value;
+
+
+    // SAVE INFORMATION
+        localStorage.setItem("businessName", name);
+        localStorage.setItem("tagline", tagline);
+        localStorage.setItem("about", about);
+        localStorage.setItem("email", email);
+        localStorage.setItem("phone", phone);
+        localStorage.setItem("location", location);
+
+
+    // UPDATE WEBSITE
+        if (name !== "") {
+            document.getElementById("businessName").innerText = name;
+            document.getElementById("navBusinessName").innerText = name;
+            document.getElementById("footerName").innerText = name;
+        }
+
+        if (tagline !== "") {
+            document.getElementById("businessTagline").innerText = tagline;
+        }
+
+        if (about !== "") {
+            document.getElementById("aboutText").innerText = about;
+        }
+
+        if (email !== "") {
+            document.getElementById("email").innerText = email;
+        }   
+
+        if (phone !== "") {
+            document.getElementById("phone").innerText = phone;
+        }
+
+        if (location !== "") {
+            document.getElementById("location").innerText = location;
+        }
+    
+
+        alert("Your changes have been saved!");
+    }
+
+
+/* LOAD SAVED INFORMATION WHEN PAGE OPENS */
+
+    window.addEventListener("DOMContentLoaded", function () {
+
+        let name = localStorage.getItem("businessName");
+        let tagline = localStorage.getItem("tagline");
+        let about = localStorage.getItem("about");
+        let email = localStorage.getItem("email");
+        let phone = localStorage.getItem("phone");
+        let location = localStorage.getItem("location");
+
+
+        if (name) {
+            document.getElementById("businessName").innerText = name;
+            document.getElementById("navBusinessName").innerText = name;
+            document.getElementById("footerName").innerText = name;
+        }
+
+        if (tagline) {
+            document.getElementById("businessTagline").innerText = tagline;
+        }
+
+        if (about) {
+            document.getElementById("aboutText").innerText = about;
+        }
+
+        if (email) {
+            document.getElementById("email").innerText = email;
+        }
+
+        if (phone) {
+            document.getElementById("phone").innerText = phone;
+        }
+
+        if (location) {
+            document.getElementById("location").innerText = location;
+        }
+    });
+
+
+    </script>
+
+
+</body>
+
+</html>
